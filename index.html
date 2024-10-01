@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Flow Graph Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Control Flow Graph Generator</h1>
+        <form method="POST" action="/generate">
+            <textarea name="user_input" placeholder="Enter your scenario here..." required></textarea>
+            <button type="submit">Generate CFG</button>
+        </form>
+
+        {% if cfg_image %}
+            <div class="result">
+                <h2>Generated CFG</h2>
+                <img src="{{ cfg_image }}" alt="Control Flow Graph">
+                <ul>
+                    <li>Number of Nodes: {{ metrics['Number of Nodes'] }}</li>
+                    <li>Number of Edges: {{ metrics['Number of Edges'] }}</li> <!-- Updated key -->
+                    <li>Cyclomatic Complexity: {{ metrics['Cyclomatic Complexity'] }}</li>
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
